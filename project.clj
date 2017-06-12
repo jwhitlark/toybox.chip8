@@ -12,7 +12,10 @@
                  [ring.middleware.logger "0.5.0"]
                  [compojure "1.5.0"]
                  [environ "1.0.2"]
-                 [http-kit "2.1.19"]]
+                 [http-kit "2.1.19"]
+                 [reagent "0.6.0-alpha" :exclusions [cljsjs/react]]
+                 [cljsjs/react-with-addons "0.14.3-0"]
+                 ]
 
   :plugins [[lein-cljsbuild "1.1.1"]
             [lein-environ "1.0.1"]
@@ -41,9 +44,9 @@
               {:app
                {:source-paths ["src/cljs"]
 
-                :figwheel true
+                ;; :figwheel true
                 ;; Alternatively, you can configure a function to run every time figwheel reloads.
-                ;; :figwheel {:on-jsload "chip8.core/on-figwheel-reload"}
+                :figwheel {:on-jsload "chip8.core/on-figwheel-reload"}
 
                 :compiler {:main chip8.core
                            :asset-path "js/compiled/out"
@@ -91,7 +94,8 @@
   :sassc [{:src "src/scss/style.scss"
            :output-to "resources/public/css/style.css"}]
 
-  :auto {"sassc" {:file-pattern  #"\.(scss)$"}}
+  :auto {"sassc" {:file-pattern  #"\.(scss)$"}
+         "test" {:file-pattern #"\.(clj|cljs|cljx|cljc|edn)$"}}
 
   :profiles {:dev
              {:dependencies [[figwheel "0.5.0-6"]

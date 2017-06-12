@@ -20,8 +20,8 @@
 (def http-handler
   (wrap-reload #'chip8.server/http-handler))
 
-(defn run []
+(defn run! []
   (figwheel/start-figwheel!)
   (start-sass))
 
-(def browser-repl figwheel/cljs-repl)
+(def browser-repl! figwheel/cljs-repl)

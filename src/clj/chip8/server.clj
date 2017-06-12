@@ -14,7 +14,9 @@
     {:status 200
      :headers {"Content-Type" "text/html; charset=utf-8"}
      :body (io/input-stream (io/resource "public/index.html"))})
-  (resources "/"))
+  (resources "/roms/")
+  (resources "/")
+  )
 
 (def http-handler
   (-> routes
